@@ -1,28 +1,22 @@
-// import  {useState } from "react";
-
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between p-4 bg-green-400 text-black-400">
- <div className="">
-      <img src="" alt="" />
-    </div>
-    <div className="flex">
-        <ul className="flex space-x-4">
-          <li><a href="">Home</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Get Started</a></li>
-          <li><a href="">Our mission</a></li>
-          <li><a href="">Browse Task</a></li>
-          <li><a href="">Contact</a></li>
-        </ul>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+        <Link to="/" className="font-black text-lg text-gray-900 flex items-center gap-2">
+          🌿 GreenGig <span className="text-green-600">Africa</span>
+        </Link>
+        <nav className="hidden md:flex items-center gap-7">
+          <a href="#how-it-works" className="text-sm font-medium text-gray-500 hover:text-green-700 transition">How it works</a>
+          <a href="#task-types" className="text-sm font-medium text-gray-500 hover:text-green-700 transition">Task types</a>
+          <a href="#trust" className="text-sm font-medium text-gray-500 hover:text-green-700 transition">Verification</a>
+        </nav>
+        <div className="flex items-center gap-2">
+          <Link to="/login" className="text-sm font-semibold text-gray-600 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-lg transition">Log in</Link>
+          <Link to="/signup" className="text-sm font-semibold text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition">Sign up</Link>
+        </div>
       </div>
-      <div className="flex space-x-2">
-        <button className="border border-green-400 text-black-400 hover:border border-green-600 hover:text-white">Log In</button>
-        <button className="bg-green-700 border border-none rounded-xl p-3 text-center text-white">Sign Up</button>
-      </div>
-    </div>
-   
+    </header>
   )
-
 }
