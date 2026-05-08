@@ -1,0 +1,30 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.bars {
+  display: flex;
+  gap: 6px;
+}
+
+.bar {
+  height: 4px;
+  flex: 1;
+  border-radius: 4px;
+  background: var(--color-border);
+  transition: background 0.25s;
+}
+
+.filled {
+  background: var(--color-primary);
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: 0.6px;
+}

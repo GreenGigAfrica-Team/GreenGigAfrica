@@ -1,0 +1,120 @@
+.backRow {
+  margin-bottom: 16px;
+}
+
+.back {
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-body);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.back:hover {
+  color: var(--color-primary);
+}
+
+.body {
+  max-width: 420px;
+}
+
+.heading {
+  font-family: var(--font-slab);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-header);
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+}
+
+.boxes {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.box {
+  width: 52px;
+  height: 56px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-header);
+  background: var(--color-card);
+  outline: none;
+  transition: border-color 0.15s;
+  caret-color: var(--color-primary);
+}
+
+.box:focus {
+  border-color: var(--color-primary);
+}
+
+/* filled box shows green border */
+.boxFilled {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.boxError {
+  border-color: var(--color-error) !important;
+  color: var(--color-error);
+}
+
+.errorText {
+  font-size: 13px;
+  color: var(--color-error);
+  margin-bottom: 6px;
+}
+
+.resendRow {
+  min-height: 22px;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.resendCooldown {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.resendBtn {
+  background: none;
+  font-size: 13px;
+  color: var(--color-primary);
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btnActive {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btnMuted {
+  background: #b3d4bb;
+  color: #fff;
+  cursor: default;
+}

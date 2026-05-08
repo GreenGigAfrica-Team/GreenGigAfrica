@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+:root {
+  --color-primary: #026C24;
+  --color-accent:  #00CC2C;
+  --color-bg:      #F5F5F5;
+  --color-card:    #FFFFFF;
+  --color-footer:  #014D1A;
+  --color-header:  #1A1A1A;
+  --color-body:    #424242;
+  --color-border:  #E0E0E0;
+  --color-muted:   #9E9E9E;
+  --color-error:   #D32F2F;
+  --font-slab:     'Roboto Slab', serif;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-body);
+}

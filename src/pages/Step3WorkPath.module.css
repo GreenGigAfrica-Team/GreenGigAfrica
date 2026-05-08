@@ -1,0 +1,120 @@
+.backRow {
+  margin-bottom: 16px;
+}
+
+.back {
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-body);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.back:hover {
+  color: var(--color-primary);
+}
+
+.body {
+  max-width: 480px;
+}
+
+.heading {
+  font-family: var(--font-slab);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-header);
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+}
+
+.cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 20px 24px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-card);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.card:hover {
+  border-color: #9ecb9e;
+}
+
+.cardSelected {
+  border-color: var(--color-primary);
+  background: #f0f9f1;
+}
+
+.iconWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #f0f9f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.cardTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-header);
+}
+
+.cardDesc {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btnActive {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btnMuted {
+  background: #b3d4bb;
+  color: #fff;
+  cursor: default;
+}

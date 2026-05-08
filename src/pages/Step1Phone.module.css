@@ -1,0 +1,122 @@
+.body {
+  max-width: 420px;
+}
+
+.heading {
+  font-family: var(--font-slab);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-header);
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-bottom: 28px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-header);
+  margin-bottom: 8px;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-card);
+  overflow: hidden;
+  transition: border-color 0.18s;
+}
+
+.inputWrap:focus-within {
+  border-color: var(--color-primary);
+}
+
+/* error/valid states override focus */
+.stateError {
+  border-color: var(--color-error) !important;
+}
+
+.stateValid {
+  border-color: var(--color-primary) !important;
+}
+
+.prefix {
+  padding: 13px 14px;
+  font-size: 15px;
+  color: var(--color-primary);
+  font-weight: 600;
+  border-right: 1.5px solid var(--color-border);
+  background: #f9f9f9;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--color-header);
+  background: transparent;
+  outline: none;
+  min-width: 0;
+}
+
+.input::placeholder {
+  color: var(--color-muted);
+}
+
+.errorText {
+  font-size: 13px;
+  color: var(--color-error);
+  margin-top: 6px;
+}
+
+.helperText {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 24px;
+  transition: background 0.2s;
+}
+
+.btnActive {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* muted = not yet actionable */
+.btnMuted {
+  background: #b3d4bb;
+  color: #fff;
+  cursor: default;
+}
+
+.loginLink {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.loginAnchor {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
