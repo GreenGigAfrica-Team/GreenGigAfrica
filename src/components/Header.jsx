@@ -51,7 +51,7 @@ export default function Header() {
         </ul>
       </div>
       <div className="flex gap-6">
-         <button className=" logIn border-2 border-solid border-[#00ce2e] rounded-xl text-black-400 py-[0.6em] px-[0.8em] hover:text-[#00ce2e]">
+         <button className=" logIn border-2 border-solid border-[#00ce2e] rounded-xl text-white py-[0.6em] px-[0.8em] hover:text-[#00ce2e]">
           Log In
         </button>
         <button className="sign-up border border-none rounded-xl py-[0.6em] px-[0.8em] text-center text-white bg-[#038c30]">

@@ -68,7 +68,7 @@ import verifyIcon from '../assets/images/iconpack/verify icon.svg'
       type: "volunteers",
       title: "Earn your certificate",
       description:
-        "Download a verified certificate of participation and watch your impact score grow."
+        "Download a verified certificate of participation and watch your impact score grow as each completed task gets logged."
     },
 
     {
