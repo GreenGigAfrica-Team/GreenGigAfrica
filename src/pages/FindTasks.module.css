@@ -18,7 +18,9 @@
 .sidebar {
   width: 190px;
   flex-shrink: 0;
-  background: var(--color-bg);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;

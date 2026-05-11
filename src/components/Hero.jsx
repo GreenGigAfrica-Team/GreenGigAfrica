@@ -1,10 +1,11 @@
-import Reader from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/hero.css"
 import heroBg from "../assets/images/hero-img.jpg"
 import globeIcon from '../assets/images/iconpack/globe icon.svg'
 
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="bg-cover bg-c bg-no-repeat w-full h-screen flex justify-center items-center my-auto mx-auto flex-col gap-8"
       style={{
@@ -20,7 +21,7 @@ export default function Hero() {
         </p>
       </div>
       <div className="cta-button ml-auto mr-auto flex space-x-8">
-        <button className="bg-green-900 py-2.5 px-6 rounded-md text-white">Find climate jobs</button>
+        <button onClick={() => navigate('/onboarding/phone')} className="bg-green-900 py-2.5 px-6 rounded-md text-white">Find climate jobs</button>
         <button className="job-btn border-[2.4px] border-solid border-white py-2.5 px-5 rounded-md text-white">Post a job</button>
       </div>
       <div className="tag-line">

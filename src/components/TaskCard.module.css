@@ -26,14 +26,14 @@
 }
 
 .iconWrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   background: #e8f5ec;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 22px;
   flex-shrink: 0;
 }
 
@@ -46,7 +46,7 @@
 
 .title {
   font-family: 'Roboto', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
   white-space: nowrap;

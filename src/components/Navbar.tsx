@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import logoSrc from '../assets/logo 2.PNG';
+import logoSrc from '../assets/logo2.PNG';
 import styles from './Navbar.module.css';
 
 interface Props {
@@ -39,7 +39,12 @@ export default function Navbar({ activePage }: Props) {
             <path d="M13.73 21a2 2 0 0 1-3.46 0" />
           </svg>
         </button>
-        <button type="button" className={styles.avatar} aria-label="Profile" />
+        <button type="button" className={styles.avatar} aria-label="Profile">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9e9e9e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
+        </button>
       </div>
     </nav>
   );
