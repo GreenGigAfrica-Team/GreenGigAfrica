@@ -1,0 +1,152 @@
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex 45ea04b..5d17dca 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -9,6 +9,7 @@[m
+       "version": "0.0.0",[m
+       "dependencies": {[m
+         "@tailwindcss/vite": "^4.2.4",[m
+[32m+[m[32m        "firebase": "^12.13.0",[m
+         "react": "^19.2.4",[m
+         "react-dom": "^19.2.4",[m
+         "react-router-dom": "^7.15.0"[m
+[36m@@ -456,6 +457,648 @@[m
+         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/@firebase/ai": {[m
+[32m+[m[32m      "version": "2.12.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/ai/-/ai-2.12.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-b+OL4vdyiSLZL/7dLd67V55CjKJvU9MpNmwnday7eA6GG2+J4iwUEsEHgw0/jKY3A41FfkF0SrnYFvtKbQZ65A==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/app-check-interop-types": "0.3.4",[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/logger": "0.5.1",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=20.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@firebase/app": "0.x",[m
+[32m+[m[32m        "@firebase/app-types": "0.x"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/analytics": {[m
+[32m+[m[32m      "version": "0.10.22",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/analytics/-/analytics-0.10.22.tgz",[m
+[32m+[m[32m      "integrity": "sha512-8BSaq/QRGU1+xyi8L2PTLTJU7MH9aMA72RQdIxrbhWFauOZY9OXo8f2YDN/972xA8d588tlnNVEQ2Mo69pT9Ow==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/installations": "0.6.22",[m
+[32m+[m[32m        "@firebase/logger": "0.5.1",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@firebase/app": "0.x"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/analytics-compat": {[m
+[32m+[m[32m      "version": "0.2.28",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/analytics-compat/-/analytics-compat-0.2.28.tgz",[m
+[32m+[m[32m      "integrity": "sha512-lIAlqUUbBu93FJMlQfslryQtBwwzdzvp23ePC6FNgymXk6Ook5v4Uvc0vdutvoIeqmyA3LfP0ZeRFK8+11kOOQ==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/analytics": "0.10.22",[m
+[32m+[m[32m        "@firebase/analytics-types": "0.8.4",[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@firebase/app-compat": "0.x"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/analytics-types": {[m
+[32m+[m[32m      "version": "0.8.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/analytics-types/-/analytics-types-0.8.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-zQ+XTgkwH6CY/eUSHJRP7e4LxM30RCxlCmob5sy2axs25GE3Ny0XdgpDscMTHHQIGqWkxPXad4w2Mw9sCgT8zQ==",[m
+[32m+[m[32m      "license": "Apache-2.0"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/app": {[m
+[32m+[m[32m      "version": "0.14.12",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/app/-/app-0.14.12.tgz",[m
+[32m+[m[32m      "integrity": "sha512-FT+HoNp1NdaZ/N26hCwV3WbxS1m6gTn3p2QRBQ3KH7YqyCQqJx0iT7126RgVk68/Rq+9DeL/zCFnHZ0C4u1nLQ==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/logger": "0.5.1",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "idb": "7.1.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=20.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/app-check": {[m
+[32m+[m[32m      "version": "0.11.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/app-check/-/app-check-0.11.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-aJ4DfubWfTO8/2vhEhIAizOoOmiycESTU32e+OUgbWcS/G3PA4Vxlr/9zaiN2wfUG2AptQ7DTvj00tyuFZP5Bg==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/logger": "0.5.1",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=20.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@firebase/app": "0.x"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/app-check-compat": {[m
+[32m+[m[32m      "version": "0.4.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/app-check-compat/-/app-check-compat-0.4.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-L3AKIRTJxT9b7cDUH3OyV8gWTnmW3vYkwdzRsukWt4kbPBTct12xalnyvHDkm1lKkr+cQq/4uzBx1bOWsQ2ciw==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/app-check": "0.11.3",[m
+[32m+[m[32m        "@firebase/app-check-types": "0.5.4",[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/logger": "0.5.1",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=20.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@firebase/app-compat": "0.x"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/app-check-interop-types": {[m
+[32m+[m[32m      "version": "0.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/app-check-interop-types/-/app-check-interop-types-0.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-zz3i6e13B8BfWiLy8MABtTh8aGIACgKbf9UVnyHcWs+yQzJXgQcl8A46b0zfaiJHdQ+niF0ouAfcpuf+3LMPQg==",[m
+[32m+[m[32m      "license": "Apache-2.0"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/app-check-types": {[m
+[32m+[m[32m      "version": "0.5.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/app-check-types/-/app-check-types-0.5.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-xV7JsIyzVr15aA7f3Pi0rB9gdBuVubs89FGA8VkRYA4g0l78poADgdfrScgf7NndSg9mm7cR7PJyY0+t22KaGw==",[m
+[32m+[m[32m      "license": "Apache-2.0"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@firebase/app-compat": {[m
+[32m+[m[32m      "version": "0.5.12",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@firebase/app-compat/-/app-compat-0.5.12.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Pe513OBerK/CIBxz4/za9atd5MsZtd6DzHz4cmqkvkrcDWhQChAoHBpZ3McuZNuSP8YZiKwfX/J1frR07l15/w==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@firebase/app": "0.14.12",[m
+[32m+[m[32m        "@firebase/component": "0.7.3",[m
+[32m+[m[32m        "@firebase/logger": "0.5.1",[m
+[32m+[m[32m        "@firebase/util": "1.15.1",[m
+[32m+[m[32m        "tslib": "^2.1.0"[m
+[32m+[m[32m      }

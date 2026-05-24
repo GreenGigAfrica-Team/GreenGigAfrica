@@ -1,5 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from 'firebase/auth';
+import { auth } from '../firebase';
+import { api } from '../api';
 import AuthLayout from '../components/AuthLayout';
 import ProgressBar from '../components/ProgressBar';
 import { api } from '../api';
@@ -11,14 +14,27 @@ const RESEND_COOLDOWN = 30;
 export default function Step2OTP() {
   const navigate = useNavigate();
   const location = useLocation();
+<<<<<<< Updated upstream
   const { phone, fullPhone, countryCode, devOtp: initialDevOtp } = location.state ?? {};
+=======
+  const phone: string = location.state?.phone ?? '';
+  const fullPhone: string = location.state?.fullPhone ?? '';
+>>>>>>> Stashed changes
 
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''));
   const [hasError, setHasError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+<<<<<<< Updated upstream
   const [countdown, setCountdown] = useState(RESEND_COOLDOWN);
   const [loading, setLoading] = useState(false);
   const [devOtp, setDevOtp] = useState<string>(initialDevOtp || '');
+=======
+  const [loading, setLoading] = useState(false);
+  const [countdown, setCountdown] = useState(RESEND_COOLDOWN);
+  const [confirmation, setConfirmation] = useState<ConfirmationResult | null>(
+    location.state?.confirmation ?? null,
+  );
+>>>>>>> Stashed changes
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const isFilled = otp.every(d => d !== '');
@@ -50,7 +66,13 @@ export default function Step2OTP() {
   }
 
   function handleKeyDown(index: number, e: React.KeyboardEvent<HTMLInputElement>) {
+<<<<<<< Updated upstream
     if (e.key === 'Backspace' && !otp[index] && index > 0) focusBox(index - 1);
+=======
+    if (e.key === 'Backspace' && !otp[index] && index > 0) {
+      focusBox(index - 1);
+    }
+>>>>>>> Stashed changes
   }
 
   function handlePaste(e: React.ClipboardEvent) {
@@ -65,6 +87,7 @@ export default function Step2OTP() {
 
   async function handleVerify(e: React.SyntheticEvent) {
     e.preventDefault();
+<<<<<<< Updated upstream
     if (!isFilled) return;
     const code = otp.join('');
     setLoading(true);
@@ -82,6 +105,43 @@ export default function Step2OTP() {
     } catch (e: any) {
       setHasError(true);
       setErrorMsg(e.message || 'Incorrect code. Please try again.');
+=======
+    if (!isFilled || loading) return;
+
+    setLoading(true);
+    setHasError(false);
+    setErrorMsg('');
+
+    try {
+      const code = otp.join('');
+
+      if (confirmation) {
+        // ── Firebase path: verify with Firebase, then exchange for Django JWT ──
+        const result = await confirmation.confirm(code);
+        const idToken = await result.user.getIdToken();
+        const data = await api.firebaseLogin(idToken);
+        localStorage.setItem('gg_access', data.tokens.access);
+        localStorage.setItem('gg_refresh', data.tokens.refresh);
+        if (data.profile_complete) {
+          navigate('/find-tasks');
+        } else {
+          navigate('/onboarding/path', { state: { phone } });
+        }
+      } else {
+        // ── Dev fallback: verify with Django OTP endpoint ──────────────────────
+        const data = await api.verifyOTP(fullPhone, code);
+        localStorage.setItem('gg_access', data.tokens.access);
+        localStorage.setItem('gg_refresh', data.tokens.refresh);
+        if (data.profile_complete) {
+          navigate('/find-tasks');
+        } else {
+          navigate('/onboarding/path', { state: { phone } });
+        }
+      }
+    } catch {
+      setHasError(true);
+      setErrorMsg('Incorrect code. Please try again.');
+>>>>>>> Stashed changes
     } finally {
       setLoading(false);
     }
@@ -98,6 +158,17 @@ export default function Step2OTP() {
       setDevOtp(res.dev_otp || '');
     } catch {}
     setTimeout(() => focusBox(0), 0);
+
+    try {
+      if (fullPhone) {
+        // re-trigger Firebase SMS
+        const recaptcha = new RecaptchaVerifier(auth, 'recaptcha-resend', { size: 'invisible' });
+        const result = await signInWithPhoneNumber(auth, fullPhone, recaptcha);
+        setConfirmation(result);
+      }
+    } catch {
+      // silently ignore — user can try again
+    }
   }
 
   const formattedPhone = phone?.replace(/(\d{3})(\d{3})(\d{3,4})/, '$1 $2 $3') || '';
@@ -138,28 +209,50 @@ export default function Step2OTP() {
             {otp.map((digit, i) => (
               <input
                 key={i}
+<<<<<<< Updated upstream
                 ref={el => { inputRefs.current[i] = el; }}
+=======
+                ref={(el) => { inputRefs.current[i] = el; }}
+>>>>>>> Stashed changes
                 type="text"
                 inputMode="numeric"
                 maxLength={1}
                 value={digit}
+<<<<<<< Updated upstream
                 onChange={e => handleChange(i, e)}
                 onKeyDown={e => handleKeyDown(i, e)}
                 className={[styles.box, hasError ? styles.boxError : digit ? styles.boxFilled : ''].filter(Boolean).join(' ')}
+=======
+                onChange={(e) => handleChange(i, e)}
+                onKeyDown={(e) => handleKeyDown(i, e)}
+                className={[
+                  styles.box,
+                  hasError ? styles.boxError : digit ? styles.boxFilled : '',
+                ].filter(Boolean).join(' ')}
+>>>>>>> Stashed changes
                 aria-label={`Digit ${i + 1}`}
               />
             ))}
           </div>
+<<<<<<< Updated upstream
 
           {hasError && <p className={styles.errorText}>{errorMsg || 'Incorrect code. Please try again.'}</p>}
 
+=======
+          {hasError && <p className={styles.errorText}>{errorMsg}</p>}
+>>>>>>> Stashed changes
           <div className={styles.resendRow}>
             {countdown > 0
               ? <span className={styles.resendCooldown}>Resend OTP in {countdown}s</span>
               : <button type="button" className={styles.resendBtn} onClick={handleResend}>Resend OTP</button>
             }
           </div>
+<<<<<<< Updated upstream
 
+=======
+          {/* invisible recaptcha anchor for resend */}
+          <div id="recaptcha-resend" />
+>>>>>>> Stashed changes
           <button
             type="submit"
             disabled={loading}

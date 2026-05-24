@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { api } from '../api';
 import AuthLayout from '../components/AuthLayout';
 import ProgressBar from '../components/ProgressBar';
 import { api } from '../api';
@@ -60,6 +61,7 @@ export default function Step4Profile() {
   }
 
   async function handleContinue() {
+<<<<<<< Updated upstream
     if (!canContinue) return;
     setLoading(true);
     setError('');
@@ -95,6 +97,23 @@ export default function Step4Profile() {
       });
     } catch (e: any) {
       setError(e.message || 'Something went wrong. Please try again.');
+=======
+    if (!canContinue || loading) return;
+    setLoading(true);
+    setError('');
+    try {
+      // map path choice to backend role value
+      const role = path === 'volunteer' ? 'volunteer' : 'job_seeker';
+      await api.setupProfile({
+        full_name: name,
+        lga: lga.toLowerCase().replace(/\s+/g, '-'),
+        task_interests: [...interests],
+        role,
+      });
+      navigate('/onboarding/success');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Try again.');
+>>>>>>> Stashed changes
     } finally {
       setLoading(false);
     }
@@ -180,7 +199,11 @@ export default function Step4Profile() {
         >
           {loading ? 'Saving…' : 'Continue'}
         </button>
+<<<<<<< Updated upstream
         {error && <p style={{ color: '#dc2626', fontSize: 13, marginTop: 8, textAlign: 'center' }}>{error}</p>}
+=======
+        {error && <p className={styles.errorText}>{error}</p>}
+>>>>>>> Stashed changes
       </div>
     </AuthLayout>
   );

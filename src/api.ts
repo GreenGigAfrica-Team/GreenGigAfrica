@@ -1,5 +1,5 @@
-// Uses env var in production, proxy in development
-const BASE = (import.meta.env.VITE_API_URL || '') + '/api/v1';
+// Central API utility — Vite proxy forwards /api → http://127.0.0.1:8000
+const BASE = '/api/v1';
 
 function getToken(): string | null {
   return localStorage.getItem('gg_access');
@@ -28,28 +28,42 @@ async function request<T>(
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
+    const d = data as Record<string, unknown>;
     const msg =
-      data?.detail ||
-      data?.phone_number?.[0] ||
-      data?.non_field_errors?.[0] ||
-      Object.values(data as Record<string, string[]>)?.[0]?.[0] ||
+      (d?.detail as string) ||
+      (d?.phone_number as string[])?.[0] ||
+      (d?.non_field_errors as string[])?.[0] ||
+      (Object.values(d)?.[0] as string[])?.[0] ||
       'Request failed';
-    const err = new Error(msg);
-    (err as any).status = res.status;
-    (err as any).data = data;
+    const err = new Error(msg) as Error & { status: number; data: unknown };
+    err.status = res.status;
+    err.data = data;
     throw err;
   }
   return data as T;
 }
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 export interface OTPResponse {
   detail: string;
   dev_otp?: string;
-  dev_note?: string;
+}
+
+export interface TokenPair {
+  access: string;
+  refresh: string;
 }
 
 export interface VerifyResponse {
-  tokens: { access: string; refresh: string };
+  tokens: TokenPair;
+  profile_complete: boolean;
+}
+
+export interface FirebaseLoginResponse {
+  message: string;
+  phone: string;
+  tokens: TokenPair;
   profile_complete: boolean;
 }
 
@@ -60,15 +74,126 @@ export interface ProfilePayload {
   role: 'job_seeker' | 'volunteer';
 }
 
+export interface Profile {
+  id: number;
+  phone_number: string;
+  role: string;
+  full_name: string;
+  lga: string;
+  task_interests: string[];
+  total_tasks_completed: number;
+  total_waste_kg: string;
+  total_trees_planted: number;
+  total_earnings: string;
+  impact_score: number;
+  created_at: string;
+}
+
+export interface Task {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  lga: string;
+  reward: string;
+  status: string;
+  deadline: string | null;
+}
+
+export interface Assignment {
+  assignment_id: number;
+  assignment_status: string;
+  task: Task;
+}
+
+// ── API calls ─────────────────────────────────────────────────────────────────
+
 export const api = {
+
+  // ── Auth ───────────────────────────────────────────────────────────────────
+
+  // Firebase Phone Auth — send Firebase ID token, get Django JWT back
+  firebaseLogin: (token: string) =>
+    request<FirebaseLoginResponse>('POST', '/auth/firebase-login/', { token }, false),
+
+  // Legacy / dev OTP flow
   requestOTP: (phone_number: string) =>
     request<OTPResponse>('POST', '/auth/request-otp/', { phone_number }, false),
-
   verifyOTP: (phone_number: string, code: string) =>
     request<VerifyResponse>('POST', '/auth/verify-otp/', { phone_number, code }, false),
 
+  // Profile setup (onboarding step 4)
   setupProfile: (payload: ProfilePayload) =>
-    request('POST', '/auth/setup-profile/', payload),
+    request<Profile>('POST', '/auth/setup-profile/', payload),
 
-  me: () => request('GET', '/auth/me/'),
+  // Current user profile
+  me: () => request<Profile>('GET', '/auth/me/'),
+
+  // Refresh JWT token
+  refreshToken: (refresh: string) =>
+    request<{ access: string }>('POST', '/auth/token/refresh/', { refresh }, false),
+
+  // ── Tasks ──────────────────────────────────────────────────────────────────
+
+  getTasks: (params: Record<string, string> = {}) => {
+    const qs = new URLSearchParams(params).toString();
+    return request<{ results: Task[]; count: number }>('GET', `/tasks/${qs ? '?' + qs : ''}`);
+  },
+  getTask: (taskId: number) =>
+    request<Task>('GET', `/tasks/${taskId}/`),
+  acceptTask: (taskId: number) =>
+    request('POST', `/tasks/${taskId}/accept/`),
+  withdrawTask: (taskId: number) =>
+    request('POST', `/tasks/${taskId}/withdraw/`),
+  myTasks: () =>
+    request<Assignment[]>('GET', '/tasks/my-tasks/'),
+  orgDashboard: () =>
+    request('GET', '/tasks/org-dashboard/'),
+
+  // ── AI match ───────────────────────────────────────────────────────────────
+
+  matchedTasks: (limit = 6) =>
+    request<{ results: Task[] }>('GET', `/ai/match/?limit=${limit}`),
+
+  // ── Proof ──────────────────────────────────────────────────────────────────
+
+  uploadProof: async (
+    assignmentId: number,
+    stage: string,
+    imageFile: File,
+    lat?: number,
+    lng?: number,
+  ) => {
+    const form = new FormData();
+    form.append('stage', stage);
+    form.append('image', imageFile);
+    if (lat != null) form.append('latitude', String(lat));
+    if (lng != null) form.append('longitude', String(lng));
+    const res = await fetch(`${BASE}/proof/${assignmentId}/upload/`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${getToken()}` },
+      body: form,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error((data as { detail?: string })?.detail || 'Upload failed');
+    return data;
+  },
+  getProof: (assignmentId: number) =>
+    request('GET', `/proof/${assignmentId}/`),
+  reviewProof: (assignmentId: number, payload: { status: string; note?: string }) =>
+    request('POST', `/proof/${assignmentId}/review/`, payload),
+
+  // ── Volunteers ─────────────────────────────────────────────────────────────
+
+  volunteerImpact: () =>
+    request('GET', '/volunteers/impact/'),
+  downloadCertificate: (assignmentId: number) =>
+    request('GET', `/volunteers/certificate/${assignmentId}/`),
+
+  // ── Organisations ──────────────────────────────────────────────────────────
+
+  registerOrg: (payload: unknown) =>
+    request('POST', '/organisations/register/', payload),
+  myOrganisation: () =>
+    request('GET', '/organisations/me/'),
 };
