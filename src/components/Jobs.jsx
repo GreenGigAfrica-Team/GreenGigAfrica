@@ -1,12 +1,6 @@
 import React from "react";
 import wasteBinIcon from '../assets/images/iconpack/waste collection icon.svg'
 import treePlantingIcon from '../assets/images/iconpack/tree planting icon.svg'
-import urbanFarmingIcon from '../assets/images/iconpack/urban farming icon.svg'
-import climateDataIcon from '../assets/images/iconpack/climate data icon.svg'
-import recycleIcon from '../assets/images/iconpack/recycle icon.svg'
-import communityIcon from '../assets/images/iconpack/community icon.svg' 
-
-
 
 export default function Features() {
   const jobSection = [
@@ -15,7 +9,7 @@ export default function Features() {
     icon: wasteBinIcon,
     id: 1,
     title: "Waste Collection",
-    description:"Community waste collection and sorting in Alimosho and other hihg-density Lagos areas. Direct LAWMA alignment."
+    description:"Community waste collection and sorting in Alimosho and other high-density Lagos areas. Direct LAWMA alignment."
     },
 
 
@@ -25,54 +19,21 @@ export default function Features() {
       title: "Tree Planting",
       description:"Seedling planting and monitoring for mangrove restoration and reforestation in Epe LGA and costal areas."
     },
-
-
-    {
-      icon: urbanFarmingIcon,
-      id: 3,
-      title: "Urban Farming",
-      description:"Maintain and expand community gardens, food forests, and urban growing spaces across Lagos neighbour hoods."
-    },
-
-
-    {
-      icon: climateDataIcon,
-      id: 4,
-      title: "Climate Data Collection",
-      description:"Collect localised environmental data — flood levels, air quality, waste hotspots — for government and research partners."
-    },
-
-
-    {
-      icon: recycleIcon,
-      id: 5,
-      title: "Recycling & Sorting",
-      description:"Sort recyclable materials at community collection points. Support Lagos State recycling partners."
-    },
-  
-    {
-      icon: communityIcon,
-      id: 6,
-      title: "Community Education",
-      description:"Lead awareness sessions on waste management, and sustainable living in local schools and markets."
-    }
-  
-
 ]
 
   return (
-    <section className=" flex justify-center items-center flex-col bg-[#026c24] mt-8 py-20 h-full max-h-200 text-white">
+    <section className="flex justify-center items-center flex-col bg-[#026c24] py-10 text-white px-4">
       <div className="flex justify-center items-center flex-col mb-8 gap-2">
-        <h2 className="text-4xl font-bold">Climate work that pays</h2>
-        <p className="text-center text-white">From Lagos waste crisis to coastal restoration. Real environmental work, <br /> verified and comoensated</p>
+        <h2 className="text-[1.8rem] font-bold md:text-4xl">Climate work that pays</h2>
+        <p className="text-center text-white text-[1.2rem]">From Lagos waste crisis to coastal restoration. Real environmental work, <br /> verified and commensated</p>
       </div>
-      <div className="grid gap-3 grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 max-w-400 py-4 ml-auto mr-auto w-[90%]">
+      <div className="flex gap-3 overflow-x-auto  max-w-full scrollbar-hide md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 lg:max-w-400 lg:py-4 lg:ml-auto lg:mr-auto lg:w-[60%] lg:gap-4">
         {jobSection.map((jobsCard) => (
           <div key={jobsCard.id}
-          className="py-8 px-4 rounded-[10px] bg-[#014d1a]">
+          className="py-8 px-4 rounded-[10px] bg-[#014d1a] w-80 shrink-0 lg:w-full lg:shrink">
             <img src= {jobsCard.icon}alt= {jobsCard.title} className='w-8 h-8 mb-3' />
             <h6 className="text-left font-bold text-[1.1rem] pb-1">{jobsCard.title}</h6>
-            <p className="w-full">{jobsCard.description}</p>
+            <p className="">{jobsCard.description}</p>
           </div>
         ))}
       </div>

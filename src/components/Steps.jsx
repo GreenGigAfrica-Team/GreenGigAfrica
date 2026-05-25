@@ -112,15 +112,15 @@ export default function Steps() {
     console.log('filteredCards:', filteredCards)
 
   return (
-    <section className="flex justify-center items-center flex-col gap-4 py-10">
+    <section className="flex justify-center items-center flex-col gap-4 py-10 bg-white px-4">
       <div className="flex justify-center items-center flex-col mb-2">
-        <h1 className="text-4xl font-bold pb-3">Simple Steps. Real Impact</h1>
-        <p className='text-center text-gray-600'>
+        <h1 className="text-[1.64rem] text-black text-center font-bold pb-3 md:text-4xl">Simple Steps. Real Impact</h1>
+        <p className='text-center text-gray-600 text-[1.2rem]'>
           Whether you are looking for flexible income or need verified climate
-          workers, <br /> GreenGig Africa connects you in minutes.
+          workers, GreenGig Africa connects you in minutes.
         </p>
       </div>
-      <div className="flex justify-center  items-center w-full gap-20 ">
+      <div className="flex justify-center  items-center w-full gap-10 ">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -132,13 +132,13 @@ export default function Steps() {
       </div>
    
 
-      <div className="flex justify-between  gap-8 max-w-400 py-4 ml-auto mr-auto w-[90%]">
+      <div className="flex flex-col gap-8 max-w-200 py-4 mx-auto  w-full md:flex md:flex-row md:max-w-300 md:w-full">
         {filteredCards.map((stepCard) => (
           <div
             key={stepCard.id}
-            className="relative bg-[#f5f5f5] rounded-[10px] w-full  h-full flex-1  py-8 px-4">
+            className="relative bg-[#f5f5f5] rounded-[10px] w-full max-h-200 flex-wrap py-10 px-4 border border-[#e0e0e0] ">
             <img src= {stepCard.icon} alt= {stepCard.title} />
-            <h2 className="absolute top-2 right-2 text-5xl font-bold text-[]">
+            <h2 className="absolute top-2 right-2 text-6xl text-[rgba(158,158,158,0.3)] font-bold text-[]">
               {stepCard.step}
             </h2>
             <h6 className="font-bold text-[1.1rem] text-left pb-1 pt-4"> {stepCard.title}</h6>

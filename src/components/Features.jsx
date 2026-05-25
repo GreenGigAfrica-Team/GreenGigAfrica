@@ -1,4 +1,3 @@
-import React from "react";
 import cameraIcon from '../assets/images/iconpack/camera icon.svg'
 import aiIcon from '../assets/images/iconpack/ai icon.svg'
 import checkMarkIcon from '../assets/images/iconpack/checkmark icon.svg'
@@ -35,17 +34,18 @@ export default function Features() {
 ]
 
   return (
-    <section className=" flex justify-center items-center flex-col bg-[#f5f5f5] h-full max-h-200 py-12">
-      <div className="flex justify-center items-center flex-col mb-8 gap-2">
-        <h2 className="text-4xl font-bold">Your work is verified. <br /> Your pay is guaranteed</h2>
-        <p className="text-center">Trust is GreenGig Africa's foundation. Every task, every submission,  <br /> every payment is protected by layers of verification.</p>
+    <section className=" flex justify-center items-center flex-col bg-[#f5f5f5] py-12 px-4">
+      <div className="flex justify-center items-center flex-col text-center gap-2">
+          <h2 className="text-[1.8rem] text-[#1a1a1a] leading-9 pb-4 font-bold md:text-[2.27rem]">Your work is verified. Your pay is guaranteed</h2>
+        <p className="text-[1.2rem]">Trust is GreenGig Africa's foundation. Every task, every submission,  <br /> every payment is protected by layers of verification.</p>
       </div>
-      <div className="flex justify-between
-       gap-8 max-w-400 py-4  w-[80%]">
+      <div className="flex flex-col justify-between
+       gap-8 max-w-400 py-4 px-4  w-full md:flex md:flex-row md:max-w-400 md:items-stretch">
         {greenGigAfricaFeatures.map((featuresCard) => (
           <div key={featuresCard.id}
-            className="flex align items-center flex-col flex-1 px-4  py-4 rounded-[10px] bg-white">
-            <div className="w-12 h-12 bg-[#dcfcefcd] rounded-md flex justify-center items-center px-2 py-2 my-6"><img src= {featuresCard.icon} alt="" /></div>
+            className="flex  items-center flex-col flex-1 px-4 w-full  py-4 rounded-[10px] bg-white border border-[#e0e0e0] ">
+            <div className="w-12 h-12 bg-[#dcfcefcd] rounded-md flex justify-center items-center px-2 py-2 my-6">
+              <img src={featuresCard.icon} alt="" /></div>
             
             <h6 className="text-center font-bold text-[1.1rem] pb-1 mt-auto">{featuresCard.title}</h6>
             <p className="mt-auto text-center">{featuresCard.description}</p>

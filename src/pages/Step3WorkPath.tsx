@@ -17,7 +17,7 @@ const PATHS: {
     id: 'paid',
     icon: '💰',
     title: 'Find paid work',
-    desc: 'Complete climate tasks and earn money paid',
+    desc: 'Complete climate tasks and earn',
     badge: 'Earn per task',
   },
   {

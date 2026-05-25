@@ -1,64 +1,59 @@
-import  React from "react";
-import '../assets/styles/header.css';
-import headerLogo from '../assets/images/header-logo.png'
-
+import { useState } from 'react';
+import HLogo from './HLogo';
+import Nav from './Nav';
+import Hbtns from './Hbtn';
+import { Menu, X } from 'lucide-react';
 export default function Header() {
-  return (
-    <header className="fixed z-10 flex items-center justify-between bg-[#fffff] text-black-400 py-6 px-6 h-[10vh] w-full"
-      style={
-        {
-          background: "rgba(255, 255, 255, 0.1)",
-          backdropFilter:" blur(10px)",
-          boxShadow:"0 6px 30px rgba(0, 0, 0, 0.25)"
-      }
-      }>
-      <div className="logo flex items-center">
-        <img src={headerLogo} alt="Header 
-        Logo" className='w-30 h-30' />
-      </div>
-      <div className="flex">
-        <ul className="nav-links flex gap-8">
-          <li>
-            <a className='relative 
-            after:content-[""]
-            after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#00ce2e] after:transition-all hover:after:w-full underline-offset-8' href="">Home</a>
-          </li>
-          <li>
-            <a className='relative 
-            after:content-[""]
-            after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#00ce2e] after:transition-all hover:after:w-full underline-offset-8' href="">About</a>
-          </li>
-          <li>
-            <a className='relative after:absolute 
-            after:content-[""]
-            after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#00ce2e] after:transition-all hover:after:w-full underline-offset-8' href="">Get Started</a>
-          </li>
-          <li>
-            <a className='relative after:absolute
-            after:content-[""]
-            after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#00ce2e] after:transition-all hover:after:w-full underline-offset-8' href="">Our mission</a>
-          </li>
-          <li>
-            <a className='relative after:absolute 
-            after:content-[""]
-            after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#00ce2e] after:transition-all hover:after:w-full underline-offset-8'  href="">Browse Task</a>
-          </li>
-          <li>
-            <a className='relative after:absolute
-            after:content-[""]
-            after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#00ce2e] after:transition-all hover:after:w-full underline-offset-8' href="">Contact</a>
-          </li>
-        </ul>
-      </div>
-      <div className="flex gap-6">
-         <button className=" logIn border-2 border-solid border-[#00ce2e] rounded-xl text-white py-[0.6em] px-[0.8em] hover:text-[#00ce2e]">
+  const [isOpen, setIsOpen] = useState(false);
 
-          Log In
-        </button>
-        <button onClick={() => navigate('/onboarding/phone')} className="sign-up border border-none rounded-xl py-[0.6em] px-[0.8em] text-center text-white bg-[#038c30]">
-          Sign Up
-        </button>
+  // Close menu when a link is clicked
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  return (
+    <header
+      className="flex items-center justify-between bg-[#fffff] text-black-400  px-6 h-20 w-full"
+    >
+      <HLogo />
+
+      {/* Desktop Navigation (Hidden on Mobile) */}
+
+   {/* Desktop Navigation */}
+<div className="hidden lg:flex flex-1 justify-center items-center">
+  <Nav />
+</div>
+
+<div className="hidden lg:flex">
+  <Hbtns />
+</div>
+
+
+      {/* Mobile Toggle Icon */}
+      <button className="lg:hidden z-60 my-auto" onClick={toggleMenu}>
+        {isOpen ? <X size={30} /> : <Menu size={30} />}
+      </button>
+
+      {/* Mobile Sidebar Overlay */}
+      <div
+        className={`
+        fixed top-0 left-0 h-screen bg-white shadow-2xl transition-transform duration-300 ease-in-out z-55
+        flex flex-col p-10 gap-8
+        w-[70%] sm:w-[40%] lg:hidden
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}
+      >
+        <Nav closeMenu={() => setIsOpen(false)} />
+        <Hbtns />
       </div>
+
+      {/* Dark background blur when menu is open */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
+    
     </header>
-  )
+  );
 }

@@ -64,6 +64,9 @@
   line-height: 1.65;
   max-width: 300px;
 }
+.mobileLogo{
+  display: none;
+}
 
 /* ── right content area ── */
 .content {
@@ -77,11 +80,44 @@
 }
 
 @media (max-width: 768px) {
-  .panel {
-    display: none;
+.shell{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  }
+.panel{
+  display: flex;
+}
+.panelInner{
+  display: flex;
+  justify-content: center;
+  padding-left: 25px;
+}
+.content{
+  flex: 1;
+}
+
+}
+
+
+
+
+@media screen and (max-width:500px){
+  .shell{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  }
+  .panel{
+     max-width: 500px;
+     width: 100%;
   }
 
-  .content {
-    padding: 32px 20px;
-  }
+  .content{
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+}
 }
