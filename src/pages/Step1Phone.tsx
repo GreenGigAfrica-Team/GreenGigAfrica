@@ -44,9 +44,18 @@ export default function Step1Phone() {
 
     try {
       setupRecaptcha();
-      const confirmation = await signInWithPhoneNumber(auth, phone.full, window.recaptchaVerifier);
-      window.confirmationResult = confirmation;
-      navigate('/onboarding/verify', { state: { phone: phone.digits, fullPhone: phone.full } });
+      let devOtp = '';
+      try {
+        // Try Firebase first
+        const confirmation = await signInWithPhoneNumber(auth, phone.full, window.recaptchaVerifier);
+        window.confirmationResult = confirmation;
+      } catch {
+        // Firebase failed — clear confirmationResult, use Django OTP fallback
+        window.confirmationResult = null as any;
+        const res = await api.requestOTP(phone.full);
+        devOtp = res.dev_otp ?? '';
+      }
+      navigate('/onboarding/verify', { state: { phone: phone.digits, fullPhone: phone.full, devOtp } });
     } catch (err: unknown) {
       if (window.recaptchaVerifier) {
         window.recaptchaVerifier.render().then((widgetId) => {

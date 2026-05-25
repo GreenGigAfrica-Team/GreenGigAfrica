@@ -38,9 +38,16 @@ export default function LoginPhone() {
 
     try {
       setupRecaptcha();
-      const confirmation = await signInWithPhoneNumber(auth, phone.full, window.recaptchaVerifier);
-      window.confirmationResult = confirmation;
-      navigate(verifyPath, { state: { phone: phone.digits, fullPhone: phone.full } });
+      let devOtp = '';
+      try {
+        const confirmation = await signInWithPhoneNumber(auth, phone.full, window.recaptchaVerifier);
+        window.confirmationResult = confirmation;
+      } catch {
+        window.confirmationResult = null as any;
+        const res = await api.requestOTP(phone.full);
+        devOtp = res.dev_otp ?? '';
+      }
+      navigate(verifyPath, { state: { phone: phone.digits, fullPhone: phone.full, devOtp } });
     } catch (err: unknown) {
       if (window.recaptchaVerifier) {
         window.recaptchaVerifier.render().then((widgetId) => {
