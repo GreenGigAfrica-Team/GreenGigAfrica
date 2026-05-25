@@ -1,29 +1,21 @@
+import { useNavigate } from 'react-router-dom';
+import type { Task } from '../data/tasks';
 import styles from './TaskCard.module.css';
 
-export interface Task {
-  id: number;
-  title: string;
-  location: string;
-  date: string;
-  time: string;
-  type: string;
-  org: string;
-  spotsLeft: number;
-  pay: number;
-  icon: string;
-  neighborhood: string;
-}
+export type { Task };
 
 interface Props {
   task: Task;
 }
 
 export default function TaskCard({ task }: Props) {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={() => navigate(`/tasks/${task.id}`)}>
       <div className={styles.cardLeft}>
         <div className={styles.iconWrap}>
-          <span className={styles.icon}>{task.icon}</span>
+          <img src={task.icon} alt={task.type} className={styles.iconImg} />
         </div>
         <div className={styles.info}>
           <h3 className={styles.title}>{task.title}</h3>
