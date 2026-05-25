@@ -1,47 +1,59 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import '../assets/styles/header.css';
-import headerLogo from '../assets/images/header-logo.png'
-
+import { useState } from 'react';
+import HLogo from './HLogo';
+import Nav from './Nav';
+import Hbtns from './Hbtn';
+import { Menu, X } from 'lucide-react';
 export default function Header() {
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Close menu when a link is clicked
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   return (
-    <header className="fixed z-10 flex items-center justify-between py-6 px-6 h-[10vh] w-full"
-      style={{
-        background: "#ffffff",
-        boxShadow: "0 1px 0 #e0e0e0"
-      }}>
-      <div className="logo flex items-center">
-        <img src={headerLogo} alt="Header 
-        Logo" className='w-30 h-30' />
+    <header
+      className="flex items-center justify-between bg-[#fffff] text-black-400  px-6 h-20 w-full"
+    >
+      <HLogo />
+
+      {/* Desktop Navigation (Hidden on Mobile) */}
+
+   {/* Desktop Navigation */}
+<div className="hidden lg:flex flex-1 justify-center items-center">
+  <Nav />
+</div>
+
+<div className="hidden lg:flex">
+  <Hbtns />
+</div>
+
+
+      {/* Mobile Toggle Icon */}
+      <button className="lg:hidden z-60 my-auto" onClick={toggleMenu}>
+        {isOpen ? <X size={30} /> : <Menu size={30} />}
+      </button>
+
+      {/* Mobile Sidebar Overlay */}
+      <div
+        className={`
+        fixed top-0 left-0 h-screen bg-white shadow-2xl transition-transform duration-300 ease-in-out z-55
+        flex flex-col p-10 gap-8
+        w-[70%] sm:w-[40%] lg:hidden
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}
+      >
+        <Nav closeMenu={() => setIsOpen(false)} />
+        <Hbtns />
       </div>
-      <div className="flex">
-        <ul className="nav-links flex gap-8">
-          {['How it works', 'Task types', 'Why GreenGig', 'About'].map((label) => (
-            <li key={label}>
-              <a
-                href=""
-                className='relative text-[#1a1a1a] text-[16px] font-normal after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#026C24] after:transition-all hover:after:w-full underline-offset-8'
-              >{label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex gap-6 items-center">
-        <button
-          onClick={() => navigate('/login')}
-          className="logIn text-[#1a1a1a] text-[16px] font-medium bg-transparent border-none cursor-pointer"
-        >
-          Log In
-        </button>
-        <button
-          onClick={() => navigate('/onboarding')}
-          className="sign-up rounded-[10px] text-white text-[16px] font-medium"
-          style={{ padding: '14px 32px', background: '#026C24', border: 'none' }}
-        >
-          Sign Up
-        </button>
-      </div>
+
+      {/* Dark background blur when menu is open */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
+    
     </header>
-  )
+  );
 }

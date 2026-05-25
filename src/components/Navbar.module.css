@@ -1,9 +1,10 @@
 .nav {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   background: #ffffff;
   border-bottom: 1px solid #e0e0e0;
-  padding: 0 32px;
   height: 72px;
   position: sticky;
   top: 0;
@@ -14,12 +15,11 @@
 .left {
   display: flex;
   align-items: center;
-  min-width: 160px;
 }
 
 .logo {
-  height: 60px;
-  width: auto;
+  height: auto;
+  width: 100px;
 }
 
 .center {
@@ -68,8 +68,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  min-width: 160px;
-  justify-content: flex-end;
 }
 
 .iconBtn {
@@ -99,4 +97,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen  and (max-width:768px){
+  .nav{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:500px){
+  .nav{
+     display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 10px;
+  max-width: 500px;
+  width: 100%;
+  }
+
+  .center {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.navLink{
+  font-size: 18px;
+}
 }

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import heroImg from '../assets/images/hero-img.jpg';
+import heroImg from '../assets/images/hero-img.png';
 import Logo from './Logo';
 import styles from './AuthLayout.module.css';
 
@@ -10,6 +10,9 @@ interface Props {
 export default function AuthLayout({ children }: Props) {
   return (
     <div className={styles.shell}>
+      <div className={styles.mobileLogo}>
+        <Logo />
+      </div>
       <aside className={styles.panel}>
         <img src={heroImg} className={styles.bg} alt="" />
         <div className={styles.overlay} />

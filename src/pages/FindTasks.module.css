@@ -200,8 +200,11 @@
 }
 
 /* ── basic mobile responsiveness ── */
-@media (max-width: 768px) {
-  .main {
+@media screen and (max-width: 500px) {
+  .main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
   }
 
@@ -224,4 +227,14 @@
   .pill {
     padding: 7px 14px;
   }
+
+ .content{
+  max-width:600px;
+  width: 100%;
+ }
+ .heading{
+  font-size: 20px;
+  font-weight: bold;
+ }
+
 }

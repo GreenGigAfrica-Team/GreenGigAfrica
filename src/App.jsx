@@ -1,14 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 // Landing page components
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Steps from './components/Steps'
-import Jobs from './components/Jobs'
-import Features from './components/Features'
-import Cta from './components/Cta'
-import Partners from './components/Partners'
-import Footer from './components/Footer'
+import LandingPage from './pages/LandingPage'
 
 // Onboarding & auth pages
 import AccountType from './pages/AccountType'
@@ -22,20 +15,6 @@ import LoginOTP from './pages/LoginOTP'
 import FindTasks from './pages/FindTasks'
 import TaskDetail from './pages/TaskDetail'
 
-function LandingPage() {
-  return (
-    <>
-      <Header />
-      <Hero />
-      <Steps />
-      <Jobs />
-      <Features />
-      <Cta />
-      <Partners />
-      <Footer />
-    </>
-  )
-}
 
 function App() {
   return (
