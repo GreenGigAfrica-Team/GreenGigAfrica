@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '../firebase';
+import { api } from '../api';
 import AuthLayout from '../components/AuthLayout';
 import PhoneInput, { type PhoneValue } from '../components/PhoneInput';
 import styles from './LoginPhone.module.css';
