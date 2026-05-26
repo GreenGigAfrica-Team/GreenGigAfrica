@@ -1,6 +1,6 @@
-import wasteIcon from '../assets/images/iconpack/waste collection icon.svg';
-import recycleIcon from '../assets/images/iconpack/recycle icon.svg';
-import communityIcon from '../assets/images/iconpack/community icon.svg';
+import wasteIcon from '../assets/images/iconpack/waste collection icon.webp';
+import recycleIcon from '../assets/images/iconpack/recycle icon.webp';
+import communityIcon from '../assets/images/iconpack/community icon.webp';
 
 export interface Task {
   id: number;

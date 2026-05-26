@@ -1,4 +1,4 @@
-import footerLogo from '../assets/images/footer-logo.png'
+import footerLogo from '../assets/images/footer-logo.webp'
 
 export default function Footer() {
   return (

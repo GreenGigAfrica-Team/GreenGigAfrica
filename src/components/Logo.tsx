@@ -1,4 +1,4 @@
-import logoSrc from '../assets/logo2.PNG';
+import logoSrc from '../assets/images/header-logo.webp';
 
 export default function Logo() {
   return (

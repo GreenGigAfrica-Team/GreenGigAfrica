@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import logoSrc from '../assets/logo2.PNG';
+import logoSrc from '../assets/images/header-logo.webp';
 import styles from './Navbar.module.css';
 
 interface Props {

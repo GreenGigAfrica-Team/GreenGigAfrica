@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../assets/styles/hero.css"
-import heroBg from "../assets/images/hero-img.png"
-import globeIcon from '../assets/images/iconpack/globe icon.svg'
+import heroBg from "../assets/images/hero-img.webp"
+import globeIcon from '../assets/images/iconpack/globe icon.webp'
 
 
 export default function Hero() {

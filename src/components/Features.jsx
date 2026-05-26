@@ -1,6 +1,6 @@
-import cameraIcon from '../assets/images/iconpack/camera icon.svg'
-import aiIcon from '../assets/images/iconpack/ai icon.svg'
-import checkMarkIcon from '../assets/images/iconpack/checkmark icon.svg'
+import cameraIcon from '../assets/images/iconpack/camera icon.webp'
+import aiIcon from '../assets/images/iconpack/ai icon.webp'
+import checkMarkIcon from '../assets/images/iconpack/checkmark icon.webp'
 
 
 

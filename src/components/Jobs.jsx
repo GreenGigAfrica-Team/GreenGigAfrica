@@ -1,6 +1,6 @@
 import React from "react";
-import wasteBinIcon from '../assets/images/iconpack/waste collection icon.svg'
-import treePlantingIcon from '../assets/images/iconpack/tree planting icon.svg'
+import wasteBinIcon from '../assets/images/iconpack/waste collection icon.webp'
+import treePlantingIcon from '../assets/images/iconpack/tree planting icon.webp'
 
 export default function Features() {
   const jobSection = [
