@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import phoneIcon from '../assets/images/iconpack/phone icon.svg'
-import searchIcon from '../assets/images/iconpack/browse task icon.svg'
-import paymentIcon from '../assets/images/iconpack/payment icon.svg'
-import volunteerIcon from '../assets/images/iconpack/volunteer icon.svg'
-import checkMarkIcon from '../assets/images/iconpack/checkmark icon.svg'
-import certificateIcon from '../assets/images/iconpack/certificate icon.svg'
-import organizationIcon from '../assets/images/iconpack/organization icon.svg'
-import postTaskIcon from '../assets/images/iconpack/post task icon.svg'
-import verifyIcon from '../assets/images/iconpack/verify icon.svg'
+import phoneIcon from '../assets/images/iconpack/phone icon.webp'
+import searchIcon from '../assets/images/iconpack/browse task icon.webp'
+import paymentIcon from '../assets/images/iconpack/payment icon.webp'
+import volunteerIcon from '../assets/images/iconpack/volunteer icon.webp'
+import checkMarkIcon from '../assets/images/iconpack/checkmark icon.webp'
+import certificateIcon from '../assets/images/iconpack/certificate icon.webp'
+import organizationIcon from '../assets/images/iconpack/organization icon.webp'
+import postTaskIcon from '../assets/images/iconpack/post task icon.webp'
+import verifyIcon from '../assets/images/iconpack/verify icon.webp'
 
  const howItWorks = [
     {

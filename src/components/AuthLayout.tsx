@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import heroImg from '../assets/images/hero-img.png';
+import heroImg from '../assets/images/hero-img.webp';
 import Logo from './Logo';
 import styles from './AuthLayout.module.css';
 

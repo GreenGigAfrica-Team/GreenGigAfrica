@@ -1,4 +1,4 @@
-import headerLogo from '../assets/images/header-logo.png'
+import headerLogo from '../assets/images/header-logo.webp'
 
 
 

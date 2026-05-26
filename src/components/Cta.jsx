@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from 'react';
-import treePlantingIcon from '../assets/images/iconpack/tree planting icon.svg'
+import treePlantingIcon from '../assets/images/iconpack/tree planting icon.webp'
 
 export default function Cta() {
    const navigate = useNavigate();
